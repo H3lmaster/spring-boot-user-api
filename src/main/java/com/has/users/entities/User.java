@@ -60,8 +60,8 @@ public class User {
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 		this.email = email;
-		this.birthDate = birthDate;
-		this.phone = phone;
+		this.setBirthDate(birthDate);
+		this.setPhone(phone);
 		this.username = username;
 		this.password = password;
 	}
@@ -83,19 +83,43 @@ public class User {
 		
 	}
 
-	private String getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	private void setFirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	private String getLastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	private void setLastName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }

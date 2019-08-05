@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +49,22 @@ public class UsersController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public void deleteUser(@PathVariable Long userId) {
 		userRepository.deleteById(userId);
+	}
+	
+	@PutMapping("/{userId}")
+	public User updateUser(@PathVariable Long userId, @RequestBody User userToUpdate) {
+		
+	    User user =
+	        userRepository
+	            .findById(userId)
+	            .orElseThrow(() -> new UserNotFoundException(userId));
+	    user.setEmail(userToUpdate.getEmail());
+	    user.setLastName(userToUpdate.getLastName());
+	    user.setFirstName(userToUpdate.getFirstName());
+	    user.setBirthDate(userToUpdate.getBirthDate());
+	    user.setPhone(userToUpdate.getPhone());
+	    
+		return userRepository.save(userToUpdate);
 	}
 
 }
